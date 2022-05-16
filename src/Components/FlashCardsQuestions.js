@@ -12,6 +12,7 @@ import Footer from './Footer';
 
 
 export default function FlashCardsQuestions(){
+    const TOTAL_ANSWERS=8;
 
     let questionsInitial=[
         {question:"O que é JSX?",
@@ -63,10 +64,13 @@ export default function FlashCardsQuestions(){
         statusCard: false,
         icone: "play-outline"}
     ];
+
     questionsInitial=questionsInitial.sort(()=>Math.random()-0.5);
 
     const [answered,setAnswered]=React.useState(0);
     const [questions,setQuestions]=React.useState(questionsInitial);
+    const [icons,setIcons]=React.useState([]);
+    const [iscompleted,SetIscompleted]=React.useState("initial");
 
     function ChangeState(index){
         const newQuestions=[...questions];
@@ -84,23 +88,73 @@ export default function FlashCardsQuestions(){
         const newQuestions=[...questions];
         newQuestions[index].statusCard=true;
         newQuestions[index].icone=string;
-        console.log(newQuestions[index]);
         setQuestions(newQuestions);
+        UpdateFooter(string);
     }
 
-    return (
-        <div className="flash-cards-page">
-            
-            <div className="header">
-                <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
-                <h1>ZapRecall</h1>
-            </div>
-            
-            <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
+    function UpdateFooter(icone){
+        setAnswered(answered+1);
+        setIcons([...icons,icone]);
 
-            <Footer answered={answered} />
+        if(answered===TOTAL_ANSWERS-1){
+            if(icons.filter(icon=>icon==="close-circle").length===0){
+                SetIscompleted(true);
+            }else{
+                SetIscompleted(false);
+            } 
+        }
+    }
+    
+    if(iscompleted===true){
+        return (
+            <div className="flash-cards-page">
+                
+                <div className="header">
+                    <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
+                    <h1>ZapRecall</h1>
+                </div>
+                
+                <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
+    
+                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                        <h3 className='final-heading'>🥳 Parabéns!</h3>
+                        <p>Você não esqueceu de nenhum flashcard!</p>
+                </Footer>
+                        
+            </div>
+        );
+    }else if(iscompleted===false){
+        return (
+            <div className="flash-cards-page">
+                
+                <div className="header">
+                    <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
+                    <h1>ZapRecall</h1>
+                </div>
+                
+                <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
+    
+                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                    <h3 className='final-heading'>😢 Putz...</h3>
+                    <p>Ainda faltam alguns...Mas não desanime!</p>
+                </Footer>
+                        
+                
+            </div>);
+    }else{
+        return (
+            <div className="flash-cards-page">
+                
+                <div className="header">
+                    <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
+                    <h1>ZapRecall</h1>
+                </div>
+                
+                <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
+    
+                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}/>
             
-        </div>
-    )
+            </div>)
+    }
 
 }
