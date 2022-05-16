@@ -38,7 +38,8 @@ input[name="zap-goals"]{
     justify-content: center;
     margin-bottom: 15px;
     padding-left: 4%;
-    
+    color:#FB6B6B;
+    font-size: 14px;
 }
 input[name="zap-goals"]::placeholder{
     color:#FB6B6B;

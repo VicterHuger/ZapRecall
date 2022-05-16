@@ -95,7 +95,8 @@ export default function FlashCardsQuestions({zapGoals}){
 
         if(answered===TOTAL_ANSWERS-1){
             SetButtonAplied(true);
-            if(answered>=zapGoals){
+            console.log(zapGoals);
+            if(icons.filter(icon=>icon==="checkmark-circle").length>=(zapGoals)){
                 SetIscompleted(true);
             }else{
                 SetIscompleted(false);
