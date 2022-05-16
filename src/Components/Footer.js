@@ -1,13 +1,31 @@
-export default function Footer({answered,icons,children}){
-    
+import { Link } from "react-router-dom"
+export default function Footer({answered,icons,children,buttonAplied}){
+
     return(
-        <div className="footer">
+        <>
+        {buttonAplied===true ?
+            <div className="footer">
+                {children}
+                <h3 className="count">{`${answered}/8 CONCLUÍDOS`}</h3> 
+                <IconsFooter>
+                    {icons}
+                </IconsFooter>
+                <Link to="/">
+                    <button className="reboot">
+                         <h4>REINICIAR RECALL</h4>
+                    </button>
+                </Link>
+            </div>
+            :
+            <div className="footer">
             {children}
             <h3 className="count">{`${answered}/8 CONCLUÍDOS`}</h3> 
             <IconsFooter>
                 {icons}
             </IconsFooter>
-        </div>
+            </div>
+        }
+       </>
     )
 }
 function IconsFooter({children}){

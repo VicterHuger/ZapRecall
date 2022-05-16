@@ -4,17 +4,13 @@ import logo from "../Assets/Images/logo.png"
 import FlashCards from './FlashCards';
 import Footer from './Footer';
 
-// function AddQuestion(question){
-//     return 
-// }
-
-
 
 
 export default function FlashCardsQuestions(){
+    
     const TOTAL_ANSWERS=8;
 
-    let questionsInitial=[
+    const questionsInitial=[
         {question:"O que é JSX?",
          answer: "Uma extensão de linguagem do JavaScript",
          state:false,
@@ -65,12 +61,13 @@ export default function FlashCardsQuestions(){
         icone: "play-outline"}
     ];
 
-    questionsInitial=questionsInitial.sort(()=>Math.random()-0.5);
+    let questionsInitialSorted=questionsInitial.sort(()=>Math.random()-0.5);
 
     const [answered,setAnswered]=React.useState(0);
-    const [questions,setQuestions]=React.useState(questionsInitial);
+    const [questions,setQuestions]=React.useState(questionsInitialSorted);
     const [icons,setIcons]=React.useState([]);
     const [iscompleted,SetIscompleted]=React.useState("initial");
+    const [buttonAplied,SetButtonAplied]=React.useState("false");
 
     function ChangeState(index){
         const newQuestions=[...questions];
@@ -97,6 +94,7 @@ export default function FlashCardsQuestions(){
         setIcons([...icons,icone]);
 
         if(answered===TOTAL_ANSWERS-1){
+            SetButtonAplied(true);
             if(icons.filter(icon=>icon==="close-circle").length===0){
                 SetIscompleted(true);
             }else{
@@ -104,19 +102,28 @@ export default function FlashCardsQuestions(){
             } 
         }
     }
+
+    // function RebootPage(){
+    //     setAnswered(0);
+    //     questionsInitialSorted=questionsInitial.sort(()=>Math.random()-0.5);
+    //     setQuestions(questionsInitialSorted);
+    //     setIcons([]);
+    //     SetIscompleted("initial");
+    //     SetButtonAplied("false");
+    // }
     
     if(iscompleted===true){
         return (
             <div className="flash-cards-page">
                 
-                <div className="header">
                     <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
                     <h1>ZapRecall</h1>
+                <div className="header">
                 </div>
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                <Footer answered={answered} buttonAplied={buttonAplied} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
                         <h3 className='final-heading'>🥳 Parabéns!</h3>
                         <p>Você não esqueceu de nenhum flashcard!</p>
                 </Footer>
@@ -134,7 +141,7 @@ export default function FlashCardsQuestions(){
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                <Footer answered={answered} buttonAplied={buttonAplied}  icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
                     <h3 className='final-heading'>😢 Putz...</h3>
                     <p>Ainda faltam alguns...Mas não desanime!</p>
                 </Footer>
@@ -152,7 +159,7 @@ export default function FlashCardsQuestions(){
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}/>
+                <Footer answered={answered} buttonAplied={buttonAplied} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon}  ></ion-icon>))}/>
             
             </div>)
     }
