@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 
 
-export default function FlashCardsQuestions(){
+export default function FlashCardsQuestions({zapGoals}){
     
     const TOTAL_ANSWERS=8;
 
@@ -95,7 +95,7 @@ export default function FlashCardsQuestions(){
 
         if(answered===TOTAL_ANSWERS-1){
             SetButtonAplied(true);
-            if(icons.filter(icon=>icon==="close-circle").length===0){
+            if(answered>=zapGoals){
                 SetIscompleted(true);
             }else{
                 SetIscompleted(false);
@@ -123,7 +123,7 @@ export default function FlashCardsQuestions(){
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} buttonAplied={buttonAplied} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                <Footer answered={answered} buttonAplied={buttonAplied} zapGoals={zapGoals} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
                         <h3 className='final-heading'>🥳 Parabéns!</h3>
                         <p>Você não esqueceu de nenhum flashcard!</p>
                 </Footer>
@@ -141,7 +141,7 @@ export default function FlashCardsQuestions(){
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} buttonAplied={buttonAplied}  icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
+                <Footer answered={answered} buttonAplied={buttonAplied} zapGoals={zapGoals} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon} ></ion-icon>))}>
                     <h3 className='final-heading'>😢 Putz...</h3>
                     <p>Ainda faltam alguns...Mas não desanime!</p>
                 </Footer>
@@ -159,7 +159,7 @@ export default function FlashCardsQuestions(){
                 
                 <FlashCards questions={questions} ChangeState={ChangeState} ChangeOpen={ChangeOpen} UpdateCardStatus={UpdateCardStatus}/>
     
-                <Footer answered={answered} buttonAplied={buttonAplied} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon}  ></ion-icon>))}/>
+                <Footer answered={answered} buttonAplied={buttonAplied} zapGoals={zapGoals} icons={icons.map((icon,index)=>(<ion-icon key={index} name={icon}  ></ion-icon>))}/>
             
             </div>)
     }
