@@ -6,60 +6,115 @@ import Footer from './Footer';
 
 
 
-export default function FlashCardsQuestions({zapGoals}){
+export default function FlashCardsQuestions({zapGoals, choice}){
     
     const TOTAL_ANSWERS=8;
+    let questionsInitial=[];
 
-    const questionsInitial=[
-        {question:"O que é JSX?",
-         answer: "Uma extensão de linguagem do JavaScript",
-         state:false,
-         openned:false,
-         statusCard: false,
-         icone: "play-outline"},
-         {question:"O React é __ ",
-         answer:"uma biblioteca JavaScript para construção de interfaces",
-         state:false,
-         openned:false,
-         statusCard: false,
-         icone: "play-outline"},
-        {question: "Componentes devem iniciar com __",
-        answer: "letra maiúscula",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"},
-        {question:" Podemos colocar __ dentro do JSX",
-        answer: "expressões",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"},
-        {question:"O ReactDOM nos ajuda __",
-        answer:"interagindo com a DOM para colocar componentes React na mesma",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"},
-        {question:"Usamos o npm para __",
-        answer:"gerenciar os pacotes necessários e suas dependências",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"},
-        {question:"Usamos props para __",
-        answer:"passar diferentes informações para componentes ",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"},
-        {question:"Usamos estado (state) para __",
-        answer:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
-        state:false, 
-        openned:false,
-        statusCard: false,
-        icone: "play-outline"}
-    ];
+    if(choice==="React"){
+         questionsInitial=[
+            {question:"O que é JSX?",
+             answer: "Uma extensão de linguagem do JavaScript",
+             state:false,
+             openned:false,
+             statusCard: false,
+             icone: "play-outline"},
+             {question:"O React é __ ",
+             answer:"uma biblioteca JavaScript para construção de interfaces",
+             state:false,
+             openned:false,
+             statusCard: false,
+             icone: "play-outline"},
+            {question: "Componentes devem iniciar com __",
+            answer: "letra maiúscula",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:" Podemos colocar __ dentro do JSX",
+            answer: "expressões",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"O ReactDOM nos ajuda __",
+            answer:"interagindo com a DOM para colocar componentes React na mesma",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos o npm para __",
+            answer:"gerenciar os pacotes necessários e suas dependências",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos props para __",
+            answer:"passar diferentes informações para componentes ",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos estado (state) para __",
+            answer:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"}
+        ];
+    }else if(choice==="Sport"){
+        questionsInitial=[
+            {question:"teste?",
+             answer: "Uma extensão de linguagem do JavaScript",
+             state:false,
+             openned:false,
+             statusCard: false,
+             icone: "play-outline"},
+             {question:"teste 1 __ ",
+             answer:"uma biblioteca JavaScript para construção de interfaces",
+             state:false,
+             openned:false,
+             statusCard: false,
+             icone: "play-outline"},
+            {question: "teste 3 __",
+            answer: "letra maiúscula",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:" Podemos colocar __ dentro do JSX",
+            answer: "expressões",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"O ReactDOM nos ajuda __",
+            answer:"interagindo com a DOM para colocar componentes React na mesma",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos o npm para __",
+            answer:"gerenciar os pacotes necessários e suas dependências",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos props para __",
+            answer:"passar diferentes informações para componentes ",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"},
+            {question:"Usamos estado (state) para __",
+            answer:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+            state:false, 
+            openned:false,
+            statusCard: false,
+            icone: "play-outline"}
+        ]
+    }
+    
 
     let questionsInitialSorted=questionsInitial.sort(()=>Math.random()-0.5);
 
@@ -70,7 +125,7 @@ export default function FlashCardsQuestions({zapGoals}){
     const [buttonAplied,SetButtonAplied]=React.useState("false");
 
     function ChangeState(index){
-        const newQuestions=[...questions];
+            const newQuestions=[...questions];
         newQuestions[index].state=true;
         setQuestions(newQuestions);
     }
