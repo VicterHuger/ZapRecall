@@ -10,9 +10,12 @@ export default function ChooseDeck({GetSelectedChoice,choice}){
             <img src={logo} alt="Logo do Zap Recall - Ilustração de um relâmpago"/>
 
             <h1>ZapRecall</h1>
-                <select onChange={GetSelectedChoice} placeholder="Escolha seu Deck"> 
-                        <option value="React" >React</option>
-                        <option value="Sport" >Sport</option>
+            <select defaultValue="default" onChange={GetSelectedChoice} > 
+                    <option value="default" disabled hidden>
+                     Escolha seu Deck
+                    </option>
+                    <option value="React" >React</option>
+                    <option value="Sport" >Sport</option>
                 </select>
             
             <Link to="/zapGoals">
@@ -21,5 +24,6 @@ export default function ChooseDeck({GetSelectedChoice,choice}){
                 </button>
             </Link>
         </div>)
+
     }
     

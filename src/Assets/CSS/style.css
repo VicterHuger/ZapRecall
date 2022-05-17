@@ -330,13 +330,11 @@ select{
     height:43px;
     margin-bottom: 18px;
     border:none;
-}
-
-select::placeholder{
     color:#ADADAD;
     font-size: 14px;
-    padding: auto 10%;
+    
 }
+
 
 
 

@@ -13,7 +13,7 @@ export default function App(){
     
 
     const [zapGoals, SetZapGoals]=React.useState("");
-    const [choice,SetChoice]=React.useState("React")
+    const [choice,SetChoice]=React.useState("default")
 
     function GetInputValue(event){
         SetZapGoals(Number(event.target.value));
@@ -21,7 +21,6 @@ export default function App(){
 
     function GetSelectedChoice(event){
         SetChoice(event.target.value);
-        console.log(choice);
     }
 
     return (
